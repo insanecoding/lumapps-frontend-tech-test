@@ -2,6 +2,7 @@
   "name": "frontend-tech-test",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "browserslist": {
     "production": [
       ">0.2%",
@@ -17,25 +18,37 @@
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prettify": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "lint": "eslint src"
   },
   "engines": {
-    "node": "20.11.1",
+    "node": "20.19.6",
     "npm": ">= 6.13.6",
     "yarn": ">= 3.4.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@tanstack/react-query-devtools": "^5.101.4",
+    "@types/lodash": "^4.17.24",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "@vitejs/plugin-react": "^5.0.4",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "prettier": "^3.8.1",
     "sass": "^1.93.2",
     "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1",
     "vite": "^7.1.10"
   },
   "dependencies": {
     "@lumx/core": "^3.18.0",
     "@lumx/icons": "^3.18.0",
     "@lumx/react": "^3.18.0",
+    "@tanstack/react-query": "^5.101.4",
     "lodash": "^4.17.21",
     "moment": "^2.30.1",
     "moment-range": "^4.0.2",

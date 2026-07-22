@@ -14,3 +14,18 @@ export interface Reaction {
   characterId: number;
   deleted: boolean;
 }
+
+export type Nullable<T> = T | null;
+
+export type CharacterResponseBody = {
+  results: Character[];
+  total: number;
+  page: number;
+  limit: number;
+  next: Nullable<string>;
+  previous: Nullable<string>;
+};
+
+export type ReactionResponseBody = {
+  reactions: Reaction[];
+};

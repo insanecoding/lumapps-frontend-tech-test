@@ -1,5 +1,12 @@
 # LumApps Frontend Test
 
+## Changes made
+- Added eslint & prettier for better code quality and consistent formatting
+
+## Where to go next:
+- Add infinite scrolling for better UX
+- Optimize images + use newer formats
+
 ## Introduction
 
 Welcome to the LumApps Frontend Technical Test. In this test, the candidate will need to create a small frontend application using the technologies that we at LumApps use in our daily routine.

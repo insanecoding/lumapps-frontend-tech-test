@@ -1,0 +1,9 @@
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--lumx-spacing-unit-tiny);
+  /* Pin to the bottom of the viewport when content is short; follow the list when tall. */
+  margin-top: auto;
+  padding-top: var(--lumx-spacing-unit-huge);
+}

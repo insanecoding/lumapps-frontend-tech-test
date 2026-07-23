@@ -1,18 +1,17 @@
 import React from 'react';
-
+import { useSearchParams } from 'react-router';
 import debounce from 'lodash/debounce';
-
 import { FlexBox, Thumbnail, TextField, Theme } from '@lumx/react';
 import { mdiMagnify } from '@lumx/icons';
 
-import styles from './Header.module.scss';
 import logo from '../../assets/logo.png';
-import { useSearchParams } from 'react-router';
+
+import styles from './index.module.scss';
 
 export const Header: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // todo: protect from race conditions: e.g when searching for `query` and `quer` arrived after `query`? or can Tanstack Query protect from that?
+  // todo: should I search on enter to match their requirement and play safe?
   const handleSearch = debounce((value: string) => {
     setSearchParams((params) => {
       params.set('name', value);
@@ -21,6 +20,7 @@ export const Header: React.FC = () => {
     });
   }, 300);
 
+  // todo: make it a link leading home when clicking on the header
   return (
     <header className={styles.header}>
       <FlexBox
@@ -35,6 +35,7 @@ export const Header: React.FC = () => {
           alt="My Static App Logo"
         />
 
+        {/* todo: add a clear button */}
         <TextField
           defaultValue={searchParams.get('name') ?? ''}
           theme={Theme.light}

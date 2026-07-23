@@ -1,0 +1,41 @@
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--lumx-spacing-unit-huge) var(--lumx-spacing-unit-big);
+}
+
+.status {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--lumx-spacing-unit-big);
+  text-align: center;
+}
+
+.statusMessage {
+  margin: 0;
+  color: var(--lumx-color-dark-L2);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lumx-spacing-unit-big);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.listItem {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+

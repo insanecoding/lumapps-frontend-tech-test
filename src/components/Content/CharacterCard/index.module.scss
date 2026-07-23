@@ -1,0 +1,37 @@
+.card {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  padding: var(--lumx-spacing-unit-big);
+}
+
+/*
+ * Stack portrait above content on narrow viewports so body text uses full card width.
+ */
+@media (max-width: 600px) {
+  :global(.lumx-flex-box).layout {
+    flex-direction: column;
+  }
+
+  .media {
+    align-self: flex-start;
+  }
+}
+
+.media {
+  flex-shrink: 0;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.reactions {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.reaction {
+  list-style: none;
+}

@@ -1,4 +1,4 @@
-import { Character, Reaction } from '../types';
+import type { Character, Reaction } from '../types';
 
 export const allCharacters: Character[] = [
   {

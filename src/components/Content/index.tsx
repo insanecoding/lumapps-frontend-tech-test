@@ -1,122 +1,106 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useSearchParams } from 'react-router';
 
-import { CharacterResponseBody, ReactionResponseBody } from '../../types';
+import {
+  Button,
+  FlexBox,
+  Kind,
+  Message,
+  Orientation,
+  ProgressCircular,
+  Size,
+} from '@lumx/react';
 
-import { Button } from '@lumx/react';
-import createPagination from './pagination';
-import { useQuery } from '@tanstack/react-query';
-import { groupBy, uniqBy } from 'lodash';
+import { CharacterCard } from './CharacterCard';
+import { useCharacters, useReactions } from './hooks';
+import PaginationButtons from './PaginationButtons';
+
+import styles from './index.module.scss';
 
 const pageLimit = 4;
 
+// todo: add skeletons instead of a loader?
+// todo: use Suspense?
 export const Content: React.FC = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const page = Number(searchParams.get('page') ?? 1);
   const searchTerm = searchParams.get('name') ?? '';
 
-  const transformReactions = useCallback((data: ReactionResponseBody) => {
-    const notDeleted = data.reactions.filter((reaction) => !reaction.deleted);
+  const { data: reactions, isPending: isReactionsPending } = useReactions();
 
-    const grouped = groupBy(uniqBy(notDeleted, 'id'), 'characterId');
+  const {
+    data: characters,
+    isFetching: isCharactersFetching,
+    isError: isCharactersError,
+    refetch: refetchCharacters,
+  } = useCharacters(page, pageLimit, searchTerm);
 
-    const entries = Object.entries(grouped).map(([key, value]) => [
-      key,
-      uniqBy(value, 'content'),
-    ]);
+  if (isCharactersError && !isCharactersFetching) {
+    return (
+      <section className={styles.content} aria-label="Character results">
+        <FlexBox
+          className={styles.status}
+          orientation={Orientation.vertical}
+          gap={Size.big}
+          hAlign="center"
+        >
+          <Message kind={Kind.error} hasBackground>
+            Could not load characters. Check your connection and try again.
+          </Message>
+          <Button emphasis="medium" onClick={() => refetchCharacters()}>
+            Try again
+          </Button>
+        </FlexBox>
+      </section>
+    );
+  }
 
-    return Object.fromEntries(entries);
-  }, []);
+  if (isCharactersFetching || isReactionsPending) {
+    return (
+      <section
+        className={styles.content}
+        aria-busy="true"
+        aria-label="Character results"
+      >
+        <div className={styles.status}>
+          <ProgressCircular />
+          <p className={styles.statusMessage} role="status">
+            Loading…
+          </p>
+        </div>
+      </section>
+    );
+  }
 
-  const { data: reactions } = useQuery({
-    queryKey: ['reactions'],
-    queryFn: async () => {
-      const response = await fetch('/api/reactions');
-      return (await response.json()) as ReactionResponseBody;
-    },
-    select: transformReactions,
-  });
-
-  const { data: characters } = useQuery({
-    queryKey: ['characters', page, pageLimit, searchTerm],
-    queryFn: async () => {
-      const response = await fetch(
-        `/api/characters?page=${page}&limit=${pageLimit}&name=${searchTerm}`,
-      );
-      return (await response.json()) as CharacterResponseBody;
-    },
-  });
-
-  if (!characters || !characters.results?.length) return null;
-
-  const totalPages = Math.ceil(characters.total / characters.limit);
-
-  console.log('=== ', reactions);
+  if (!characters?.results.length) {
+    return (
+      <section className={styles.content} aria-label="Character results">
+        <div className={styles.status}>
+          <p className={styles.statusMessage} role="status">
+            {`No characters found${searchTerm ? ` for “${searchTerm}”` : ''}`}
+          </p>
+        </div>
+      </section>
+    );
+  }
 
   return (
-    <div>
-      {characters.results.map((character) => (
-        <div key={character.id}>
-          <div>{character.imageUrl}</div>
-          <span>{character.name}</span>
-          <span>{character.birthYear}</span>
-          <span>{character.species}</span>
-          <div>{character.description}</div>
-          <div>{character.affiliations}</div>
-          <div>
-            {reactions?.[character.id]?.map((item) => item.content)?.join(' ')}
-          </div>
-          <br />
-        </div>
-      ))}
-
-      <Button
-        emphasis="medium"
-        onClick={() => {
-          setSearchParams((params) => {
-            params.set('page', `${page - 1}`);
-            return params;
-          });
-        }}
-        isDisabled={page === 1}
-      >
-        {'<'}
-      </Button>
-      {createPagination(characters.total, characters.limit, page).map(
-        (item, index) =>
-          item === null ? (
-            <span key={`delimiter-${index}`}>...</span>
-          ) : (
-            <Button
-              emphasis="medium"
-              key={item}
-              isActive={item === page}
-              onClick={() => {
-                if (item === page) return;
-
-                setSearchParams((params) => {
-                  params.set('page', `${item}`);
-                  return params;
-                });
-              }}
-            >
-              {item}
-            </Button>
-          ),
-      )}
-      <Button
-        emphasis="medium"
-        onClick={() => {
-          setSearchParams((params) => {
-            params.set('page', `${page + 1}`);
-            return params;
-          });
-        }}
-        isDisabled={page === totalPages}
-      >
-        {'>'}
-      </Button>
-    </div>
+    <section className={styles.content} aria-label="Character results">
+      <ul className={styles.list}>
+        {characters.results.map((character) => (
+          <li key={character.id} className={styles.listItem}>
+            <CharacterCard
+              character={character}
+              reactions={reactions?.[character.id] ?? []}
+            />
+          </li>
+        ))}
+      </ul>
+      <PaginationButtons
+        totalItems={characters.total}
+        pageLimit={characters.limit}
+        currentPage={page}
+      />
+    </section>
   );
-  // return <section className="lumx-spacing-padding-huge" />;
 };

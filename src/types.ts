@@ -17,15 +17,15 @@ export interface Reaction {
 
 export type Nullable<T> = T | null;
 
-export type CharacterResponseBody = {
+export interface CharacterResponseBody {
   results: Character[];
   total: number;
   page: number;
   limit: number;
   next: Nullable<string>;
   previous: Nullable<string>;
-};
+}
 
-export type ReactionResponseBody = {
+export interface ReactionResponseBody {
   reactions: Reaction[];
-};
+}

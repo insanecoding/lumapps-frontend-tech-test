@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw';
 import { allCharacters, allReactions } from './data';
-import { CharacterResponseBody, ReactionResponseBody } from '../types';
+import type { CharacterResponseBody, ReactionResponseBody } from '../types';
 export const handlers = [
   http.get('/api/characters', ({ request }) => {
     const url = new URL(request.url);

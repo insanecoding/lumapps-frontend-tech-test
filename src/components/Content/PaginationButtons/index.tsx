@@ -15,7 +15,11 @@ const PaginationButtons: React.FC<{
   const [_, setSearchParams] = useSearchParams();
 
   return (
-    <nav className={styles.pagination} aria-label="Pagination">
+    <nav
+      className={styles.pagination}
+      aria-label="Pagination"
+      data-testid="pagination-buttons"
+    >
       <Button
         emphasis="medium"
         onClick={() => {

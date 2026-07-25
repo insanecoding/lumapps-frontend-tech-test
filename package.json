@@ -19,9 +19,10 @@
     "start": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "prettify": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "prettify": "prettier --write \"{src,cypress}/**/*.{ts,tsx}\"",
     "lint": "eslint src",
-    "test:unit": "vitest"
+    "test:unit": "vitest",
+    "test:e2e": "cypress open"
   },
   "engines": {
     "node": "20.19.6",
@@ -31,12 +32,15 @@
   "devDependencies": {
     "@eslint/js": "^9.39.4",
     "@tanstack/react-query-devtools": "^5.101.4",
+    "@testing-library/cypress": "^10.1.0",
     "@types/lodash": "^4.17.24",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "@vitejs/plugin-react": "^5.0.4",
+    "cypress": "^15.12.0",
     "eslint": "^9.39.4",
     "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-cypress": "^6.2.0",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "prettier": "^3.8.1",

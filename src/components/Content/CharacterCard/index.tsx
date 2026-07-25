@@ -29,6 +29,7 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({
     <article
       className={styles.card}
       aria-labelledby={`character-${character.id}-name`}
+      data-testid="character-card"
     >
       <GenericBlock
         className={styles.layout}
@@ -52,25 +53,35 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({
               as="h2"
               id={`character-${character.id}-name`}
               typography="title"
+              data-testid="character-name"
             >
               {character.name}
             </Heading>
             {character.species && (
-              <Flag label={character.species} color={ColorPalette.blue} />
+              <Flag
+                label={character.species}
+                color={ColorPalette.blue}
+                data-testid="flag-heading-species"
+              />
             )}
             {character.birthYear && (
-              <Flag label={character.birthYear} color={ColorPalette.green} />
+              <Flag
+                label={character.birthYear}
+                color={ColorPalette.green}
+                data-testid="flag-heading-birthYear"
+              />
             )}
           </FlexBox>
 
           {character.description && (
-            <Text as="p" typography="body1">
+            <Text as="p" typography="body1" data-testid="card-description">
               {character.description}
             </Text>
           )}
 
           {character.affiliations.length > 0 && (
             <FlexBox
+              data-testid="affiliations"
               orientation={Orientation.horizontal}
               hAlign="center"
               gap={Size.tiny}
@@ -93,10 +104,13 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({
               orientation={Orientation.horizontal}
               gap={Size.tiny}
               aria-label={`Reactions for ${character.name}`}
+              data-testid="reaction-chip-container"
             >
               {reactions.map((reaction) => (
                 <li key={reaction.id} className={styles.reaction}>
-                  <Chip size={Size.s}>{reaction.content}</Chip>
+                  <Chip size={Size.s} data-testid="reaction-chip">
+                    {reaction.content}
+                  </Chip>
                 </li>
               ))}
             </FlexBox>

@@ -27,3 +27,7 @@ yarn-error.log*
 
 # editors
 .idea
+
+# E2E testing
+cypress/screenshots
+cypress/videos

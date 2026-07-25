@@ -2,10 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import { App } from './components/App';
+
 import './index.scss';
 
 // 1. Define an async function to start the worker
 async function enableMocking() {
+  // Cypress drives /api/* via cy.intercept — skip MSW in favor of local overrides
+  if ('Cypress' in window) {
+    return Promise.resolve();
+  }
+
   // Dynamically import the browser worker setup
   const { worker } = await import('./__mocks/browser');
 

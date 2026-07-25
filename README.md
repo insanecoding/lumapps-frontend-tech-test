@@ -2,10 +2,12 @@
 
 ## Changes made
 - Added eslint & prettier for better code quality and consistent formatting
+- TODO: explain the new scripts and how to use them
 
 ## Where to go next:
 - Add infinite scrolling for better UX
 - Optimize images + use newer formats
+- Configure Cypress to run headlessly against production build
 
 ## Introduction
 

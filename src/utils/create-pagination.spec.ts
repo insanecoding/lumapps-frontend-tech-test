@@ -1,26 +1,27 @@
 import createPagination from './create-pagination';
 
 describe('Creates pagination without "null" gaps', () => {
-  test('Should display all available pages if totalPages <= 5', () => {
+  test('Should display all available pages if totalPages <= 7', () => {
     expect(createPagination({ totalPages: 0, currentPage: 1 })).toEqual([]);
     expect(createPagination({ totalPages: 1, currentPage: 1 })).toEqual([1]);
-    expect(createPagination({ totalPages: 5, currentPage: 2 })).toEqual([
-      1, 2, 3, 4, 5,
+    expect(createPagination({ totalPages: 7, currentPage: 2 })).toEqual([
+      1, 2, 3, 4, 5, 6, 7,
     ]);
-    expect(createPagination({ totalPages: 5, currentPage: 42 })).toEqual([
-      1, 2, 3, 4, 5,
+    expect(createPagination({ totalPages: 7, currentPage: 42 })).toEqual([
+      1, 2, 3, 4, 5, 6, 7,
     ]);
     expect(createPagination({ totalPages: 1, currentPage: 42 })).toEqual([1]);
   });
 });
 
-describe('Creates pagination with one "null" gap', () => {
-  test('Should display the first/last page and the pages before/after the current page at the beginning', () => {
+describe('Creates pagination with one "null" gap if totalPages === 10', () => {
+  test('Should handle the first three pages', () => {
     expect(createPagination({ totalPages: 10, currentPage: 1 })).toEqual([
       1,
       2,
       3,
       null,
+      9,
       10,
     ]);
 
@@ -29,21 +30,23 @@ describe('Creates pagination with one "null" gap', () => {
       2,
       3,
       null,
+      9,
       10,
     ]);
     expect(createPagination({ totalPages: 10, currentPage: 3 })).toEqual([
       1,
       2,
       3,
-      4,
       null,
+      9,
       10,
     ]);
   });
 
-  test('Should display the first/last page and the pages before/after the current page at the end', () => {
+  test('Should handle the last three pages', () => {
     expect(createPagination({ totalPages: 10, currentPage: 10 })).toEqual([
       1,
+      2,
       null,
       8,
       9,
@@ -51,6 +54,7 @@ describe('Creates pagination with one "null" gap', () => {
     ]);
     expect(createPagination({ totalPages: 10, currentPage: 9 })).toEqual([
       1,
+      2,
       null,
       8,
       9,
@@ -58,8 +62,8 @@ describe('Creates pagination with one "null" gap', () => {
     ]);
     expect(createPagination({ totalPages: 10, currentPage: 8 })).toEqual([
       1,
+      2,
       null,
-      7,
       8,
       9,
       10,
@@ -67,8 +71,8 @@ describe('Creates pagination with one "null" gap', () => {
   });
 });
 
-describe('Creates pagination with two "null" gaps', () => {
-  test('Should display the first/last page, a gap, the pages before/after the current page and another gap', () => {
+describe('Creates pagination with two "null" gaps if totalPages === 10', () => {
+  test('Should handle the pages in the middle', () => {
     expect(createPagination({ totalPages: 10, currentPage: 4 })).toEqual([
       1,
       null,

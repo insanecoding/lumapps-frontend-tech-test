@@ -3432,6 +3432,7 @@ __metadata:
     prettier: ^3.8.1
     react: ^19.2.0
     react-dom: ^19.2.0
+    react-error-boundary: ^6.1.2
     react-router-dom: ^7.9.4
     sass: ^1.93.2
     typescript: ^5.9.3
@@ -4827,6 +4828,15 @@ __metadata:
   peerDependencies:
     react: ^19.2.0
   checksum: b6ec952f68a29dcc847143ad48974477e1d3b95cb0a6e0039dd93c7fe64d0ef51f2ca09a19c5eb892ba625ba88c4bcc6f8bc3bdd1c33ccc3f6f17acabbb4882f
+  languageName: node
+  linkType: hard
+
+"react-error-boundary@npm:^6.1.2":
+  version: 6.1.2
+  resolution: "react-error-boundary@npm:6.1.2"
+  peerDependencies:
+    react: ^18.0.0 || ^19.0.0
+  checksum: fe2597913b49daaeb980721daa021cfc9aaa462c55feac6cffc36abc8f3186a79b6e6d1365a4548a981e1bed5683cd29a5eec29dfc5bfb6badeb0005d148d1c1
   languageName: node
   linkType: hard
 

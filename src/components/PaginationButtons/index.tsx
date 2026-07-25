@@ -2,7 +2,7 @@ import React from 'react';
 import { useSearchParams } from 'react-router';
 import { Button } from '@lumx/react';
 
-import createPagination from '../utils/create-pagination';
+import createPagination from '../../utils/create-pagination';
 
 import styles from './index.module.scss';
 
@@ -14,6 +14,13 @@ const PaginationButtons: React.FC<{
   const totalPages = Math.ceil(totalItems / pageLimit);
   const [_, setSearchParams] = useSearchParams();
 
+  const goToPage = (page: number) => {
+    setSearchParams((params) => {
+      params.set('page', `${page}`);
+      return params;
+    });
+  };
+
   return (
     <nav
       className={styles.pagination}
@@ -22,12 +29,7 @@ const PaginationButtons: React.FC<{
     >
       <Button
         emphasis="medium"
-        onClick={() => {
-          setSearchParams((params) => {
-            params.set('page', `${currentPage - 1}`);
-            return params;
-          });
-        }}
+        onClick={() => goToPage(currentPage - 1)}
         isDisabled={currentPage === 1}
       >
         {'<'}
@@ -42,11 +44,7 @@ const PaginationButtons: React.FC<{
             isActive={item === currentPage}
             onClick={() => {
               if (item === currentPage) return;
-
-              setSearchParams((params) => {
-                params.set('page', `${item}`);
-                return params;
-              });
+              goToPage(item);
             }}
           >
             {item}
@@ -55,12 +53,7 @@ const PaginationButtons: React.FC<{
       )}
       <Button
         emphasis="medium"
-        onClick={() => {
-          setSearchParams((params) => {
-            params.set('page', `${currentPage + 1}`);
-            return params;
-          });
-        }}
+        onClick={() => goToPage(currentPage + 1)}
         isDisabled={currentPage === totalPages}
       >
         {'>'}

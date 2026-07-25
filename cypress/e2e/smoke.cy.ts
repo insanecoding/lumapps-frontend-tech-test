@@ -18,7 +18,7 @@ describe('Smoke test', () => {
       },
       statusCode: 200,
     }).as('getCharacters');
-  })
+  });
 
   it('Loads the page, shows four cards and pagination', () => {
     cy.visit('/');

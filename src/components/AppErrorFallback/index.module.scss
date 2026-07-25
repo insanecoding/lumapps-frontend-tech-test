@@ -1,0 +1,9 @@
+.fallback {
+  box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--lumx-spacing-unit-huge) var(--lumx-spacing-unit-big);
+  text-align: center;
+}

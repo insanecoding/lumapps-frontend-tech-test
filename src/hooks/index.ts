@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
-import type { CharacterResponseBody, ReactionResponseBody } from '../../types';
-import transformReactions from './utils/transform-reactions';
+import type { CharacterResponseBody, ReactionResponseBody } from '../types';
+import transformReactions from '../utils/transform-reactions';
 
 export const useReactions = () => {
   return useQuery({

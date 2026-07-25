@@ -11,20 +11,18 @@ import {
   Size,
 } from '@lumx/react';
 
-import { CharacterCard } from './CharacterCard';
-import { useCharacters, useReactions } from './hooks';
-import PaginationButtons from './PaginationButtons';
+import CharacterCard from '../../components/CharacterCard';
+import { useCharacters, useReactions } from '../../hooks';
+import PaginationButtons from '../../components/PaginationButtons';
 
 import styles from './index.module.scss';
 
 const pageLimit = 4;
 
-// todo: add skeletons instead of a loader?
-// todo: use Suspense?
-export const Content: React.FC = () => {
+export const CharactersPage: React.FC = () => {
   const [searchParams] = useSearchParams();
   const page = Number(searchParams.get('page') ?? 1);
-  const searchTerm = searchParams.get('name') ?? '';
+  const searchTerm = (searchParams.get('name') ?? '').trim();
 
   const { data: reactions, isPending: isReactionsPending } = useReactions();
 

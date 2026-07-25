@@ -1,7 +1,7 @@
 import groupBy from 'lodash/groupBy';
 import uniqBy from 'lodash/uniqBy';
 
-import type { Reaction, ReactionResponseBody } from '../../../types';
+import type { Reaction, ReactionResponseBody } from '../types';
 
 type CharacterId = number;
 type ReactionsByCharacterId = Record<CharacterId, Reaction[]>;

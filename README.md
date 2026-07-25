@@ -5,9 +5,11 @@
 - TODO: explain the new scripts and how to use them
 
 ## Where to go next:
-- Add infinite scrolling for better UX
+- Add infinite scrolling for better UX. If the data grows significantly, virtualization can help
 - Optimize images + use newer formats
 - Configure Cypress to run headlessly against production build
+- Turn the search input into a live search with debounce instead of the search on enter
+- Consider skeleton cards as placeholders when fetching for better perceived performance
 
 ## Introduction
 

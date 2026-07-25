@@ -61,6 +61,7 @@
     "msw": "^2.11.5",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-error-boundary": "^6.1.2",
     "react-router-dom": "^7.9.4"
   },
   "msw": {

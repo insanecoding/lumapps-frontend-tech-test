@@ -11,7 +11,7 @@ import {
   Text,
 } from '@lumx/react';
 
-import type { Character, Reaction } from '../../../types';
+import type { Character, Reaction } from '../../types';
 import CardImage from './CardImage';
 
 import styles from './index.module.scss';
@@ -21,7 +21,7 @@ export interface CharacterCardProps {
   reactions?: Reaction[];
 }
 
-export const CharacterCard: React.FC<CharacterCardProps> = ({
+const CharacterCard: React.FC<CharacterCardProps> = ({
   character,
   reactions = [],
 }) => {
@@ -38,7 +38,10 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({
         hAlign="top"
         figure={
           <div className={styles.media}>
-            <CardImage name={character.name} imageUrl={character.imageUrl} />
+            <CardImage
+              name={character.name}
+              imageUrl={character.imageUrl}
+            />
           </div>
         }
       >
@@ -120,3 +123,5 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({
     </article>
   );
 };
+
+export default CharacterCard;

@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import { App } from './components/App';
+import App from './containers/App';
 
-import './index.scss';
+import './main.scss';
 
 // 1. Define an async function to start the worker
 async function enableMocking() {

@@ -19,7 +19,8 @@
     "start": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "prettify": "prettier --write \"{src,cypress}/**/*.{ts,tsx}\"",
+    "prepare": "simple-git-hooks",
+    "prettify": "prettier --write .",
     "lint": "eslint src",
     "test:unit": "vitest",
     "test:e2e": "cypress open",
@@ -44,8 +45,10 @@
     "eslint-plugin-cypress": "^6.2.0",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
+    "lint-staged": "^16.4.0",
     "prettier": "^3.8.1",
     "sass": "^1.93.2",
+    "simple-git-hooks": "^2.13.1",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.56.1",
     "vite": "^7.1.10",
@@ -68,6 +71,18 @@
   "msw": {
     "workerDirectory": [
       "public"
+    ]
+  },
+  "simple-git-hooks": {
+    "pre-commit": "yarn lint-staged"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,css,scss,html}": [
+      "prettier --write"
     ]
   }
 }

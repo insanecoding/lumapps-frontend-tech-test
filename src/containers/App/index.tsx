@@ -28,6 +28,7 @@ const App: React.FC = () => {
           </div>
         </Router>
       </ErrorBoundary>
+      {/* The DevTools panel isn't bundled for production (TanStack's defaults), so no need for a guard check */}
       <ReactQueryDevtools />
     </QueryClientProvider>
   );

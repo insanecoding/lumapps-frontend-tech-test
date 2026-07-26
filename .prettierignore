@@ -1,0 +1,16 @@
+# dependencies & build
+node_modules
+dist
+coverage
+.yarn
+yarn.lock
+
+# generated / binary assets
+public/mockServiceWorker.js
+public/images
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.ico

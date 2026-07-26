@@ -33,6 +33,8 @@ export const CharactersPage: React.FC = () => {
     refetch: refetchCharacters,
   } = useCharacters(page, pageLimit, searchTerm);
 
+  // characters errors are blocking: the page stops being meaningful without the character list
+  // reactions errors are non-blocking: cards still render without them
   if (isCharactersError && !isCharactersFetching) {
     return (
       <section className={styles.content} aria-label="Character results">
@@ -42,7 +44,7 @@ export const CharactersPage: React.FC = () => {
           gap={Size.big}
           hAlign="center"
         >
-          <Message kind={Kind.error} hasBackground>
+          <Message kind={Kind.error} role="alert" hasBackground>
             Could not load characters. Check your connection and try again
           </Message>
           <Button
@@ -57,6 +59,7 @@ export const CharactersPage: React.FC = () => {
     );
   }
 
+  // wait for both queries on first paint so cards appear complete (no chip pop-in)
   if (isCharactersFetching || isReactionsPending) {
     return (
       <section

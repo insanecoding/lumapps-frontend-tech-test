@@ -39,7 +39,7 @@ export default defineConfig([
     },
   },
   {
-    files: ['vite.config.ts'],
+    files: ['vite.config.mts', 'cypress.config.ts'],
     languageOptions: { globals: globals.node },
   },
   {

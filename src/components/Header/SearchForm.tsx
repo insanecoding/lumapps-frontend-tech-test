@@ -27,7 +27,7 @@ const SearchForm: React.FC = () => {
       } else {
         params.delete('name');
       }
-      return params;
+      return params; // mutating the callback before return is a recommended way in React Router docs
     });
   };
 

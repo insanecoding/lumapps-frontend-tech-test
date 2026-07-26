@@ -17,7 +17,7 @@ const PaginationButtons: React.FC<{
   const goToPage = (page: number) => {
     setSearchParams((params) => {
       params.set('page', `${page}`);
-      return params;
+      return params; // mutating the callback before return is a recommended way in React Router docs
     });
   };
 
@@ -32,17 +32,22 @@ const PaginationButtons: React.FC<{
         onClick={() => goToPage(currentPage - 1)}
         isDisabled={currentPage === 1}
         data-testid="pagination-button-previous"
+        aria-label="Previous page"
       >
         {'<'}
       </Button>
       {createPagination({ totalPages, currentPage }).map((item, index) =>
         item === null ? (
-          <span key={`delimiter-${index}`}>...</span>
+          <span key={`delimiter-${index}`} aria-hidden="true">
+            ...
+          </span>
         ) : (
           <Button
             emphasis="medium"
             key={item}
             isActive={item === currentPage}
+            aria-current={item === currentPage ? 'page' : undefined}
+            aria-label={`Page ${item}`}
             onClick={() => {
               if (item === currentPage) return;
               goToPage(item);
@@ -58,6 +63,7 @@ const PaginationButtons: React.FC<{
         onClick={() => goToPage(currentPage + 1)}
         isDisabled={currentPage === totalPages}
         data-testid="pagination-button-next"
+        aria-label="Next page"
       >
         {'>'}
       </Button>

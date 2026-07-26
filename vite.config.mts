@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitest/config'
+import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
@@ -13,7 +13,6 @@ export default defineConfig({
           warn: (message, options) => {
             // Check if span and url exist and the url is a file path
             if (options.span && options.span.url) {
-
               // 💡 FIX: Convert the URL object to a string before using string methods
               const url = options.span.url.toString();
 
@@ -25,14 +24,13 @@ export default defineConfig({
             }
             // Log all other warnings
             console.warn(message);
-          }
-        }
-      }
-    }
+          },
+        },
+      },
+    },
   },
   test: {
     environment: 'node',
     globals: true,
   },
 });
-

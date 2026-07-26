@@ -82,6 +82,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
           {character.affiliations.length > 0 && (
             <FlexBox
               data-testid="affiliations"
+              aria-label={`Affiliations for ${character.name}`}
               orientation={Orientation.horizontal}
               hAlign="center"
               gap={Size.tiny}

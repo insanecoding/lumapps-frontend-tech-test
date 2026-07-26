@@ -1,23 +1,88 @@
 # LumApps Frontend Test
 
-## Changes made
+The Star Wars characters search app
 
-- Added eslint & prettier for better code quality and consistent formatting
-- TODO: explain the new scripts and how to use them
+## What's done
 
-## Possible extensions and next steps (if it was a real product):
+- [x] Search by name functionality (a "clear" button for extra convenience)
+- [x] Updated the mock API to use `startsWith` to match the requirement
+- [x] A Card component showing image, name, description, species, birth year, affiliations
+- [x] Reactions per character
+- [x] 4 results per page + pagination to navigate the list
+- [x] Edge-case handling (empty results, errors, loading, etc)
+- [x] Looks good on a mobile screen
+- [x] The accessibility was enhanced (aria labels, keyboard navigation)
+
+## How to run
+
+### Install Node
+
+The Node version had to be bumped to 20.19.6 to match the Vite requirement. So you need to do:
+
+```bash
+nvm use
+```
+
+It will pick the version from the `.nvmrc`. Please follow the instructions if prompted to download the node version, in case it's not there.
+
+### Install the packages
+
+Use this command to install the packages (it will also automatically install the pre-commit hook)
+
+```bash
+yarn install
+```
+
+If yarn can't be found, you need to install it first:
+
+```bash
+corepack enable
+corepack prepare yarn@stable --activate
+```
+
+### Start the project
+
+Use this command to start the project
+
+```bash
+yarn start
+```
+
+### Other useful scripts:
+
+- `yarn lint`: runs ESLint checks
+- `yarn test:unit`: runs Vitest for unit testing
+- `yarn test:e2e:cli`: runs Cypress for E2E testing (or use `yarn test:e2e` for GUI interface) - both commands need to be accompanied by `yarn start` in another terminal
+- `yarn prettify`: reformat all project files according to Prettier rules (also done automatically on pre-commit)
+- `yarn build`: run production build
+- `yarn preview`: serve production build
+- `yarn prepare`: install git hooks (ran automatically on post-install)
+
+## Implementation notes and highlights
+
+- The app state is saved in URL query params, making it easily shareable
+- Used `@lumx/react` as the Design System
+- The cards render placeholders with first letters if no image found, providing better UX
+- TanStack Query used for fetching and caching.
+- The reactions payload is normalized after fetch for better separation of concerns and easier lookups in the components
+- Added ESLint, Prettier and Editorconfig for better code quality and consistent formatting
+- Added Vitest and Cypress for unit and E2E testing
+
+## Possible extensions and next steps (if it was a real product to own):
 
 - Turn the search input into a live search with debounce instead of searching on enter
 - Use skeleton cards as placeholders for better perceived performance on initial load
 - No loader when changing pages: conserve and dim the old results until the new data arrives
-- Consider infinite scrolling for better UX + virtualization if the data grows and the lists are very long
+- Consider infinite scrolling for better UX + virtualization if the data grows and the lists get very long
 - Reduce image sizes + use newer image formats (webp) for faster loads
 - Enable react optimizing compiler to avoid tracking useCallback/useMemo and adding them manually
-- Lazy load routes (if we have more of them)
+- Lazy load routes (if we have more than one page)
 - Fetch next page on hover
 - Configure CI to run E2E/unit tests, linting, etc
 - Add visual regression testing
 - Configure error logging and observability (Sentry, Datadog, etc)
+
+---
 
 ## Introduction
 

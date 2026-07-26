@@ -43,9 +43,13 @@ export const CharactersPage: React.FC = () => {
           hAlign="center"
         >
           <Message kind={Kind.error} hasBackground>
-            Could not load characters. Check your connection and try again.
+            Could not load characters. Check your connection and try again
           </Message>
-          <Button emphasis="medium" onClick={() => refetchCharacters()}>
+          <Button
+            data-testid="refetch-characters"
+            emphasis="medium"
+            onClick={() => refetchCharacters()}
+          >
             Try again
           </Button>
         </FlexBox>
@@ -63,7 +67,7 @@ export const CharactersPage: React.FC = () => {
         <div className={styles.status}>
           <ProgressCircular />
           <p className={styles.statusMessage} role="status">
-            Loading…
+            Loading...
           </p>
         </div>
       </section>

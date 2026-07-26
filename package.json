@@ -22,7 +22,8 @@
     "prettify": "prettier --write \"{src,cypress}/**/*.{ts,tsx}\"",
     "lint": "eslint src",
     "test:unit": "vitest",
-    "test:e2e": "cypress open"
+    "test:e2e": "cypress open",
+    "test:e2e:cli": "cypress run"
   },
   "engines": {
     "node": "20.19.6",

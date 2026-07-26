@@ -38,10 +38,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
         hAlign="top"
         figure={
           <div className={styles.media}>
-            <CardImage
-              name={character.name}
-              imageUrl={character.imageUrl}
-            />
+            <CardImage name={character.name} imageUrl={character.imageUrl} />
           </div>
         }
       >

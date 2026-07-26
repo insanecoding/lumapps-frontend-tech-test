@@ -41,13 +41,17 @@ const SearchForm: React.FC = () => {
     >
       <TextField
         label="Search"
-        clearButtonProps={{ label: 'Clear' }}
+        clearButtonProps={{
+          label: 'Clear',
+          'data-testid': 'search-input-clear',
+        }}
         value={inputValue}
         onChange={setInputValue}
         onClear={() => handleSearch('')}
         theme={Theme.light}
         icon={mdiMagnify}
         placeholder="Find your character"
+        data-testid="search-input"
       />
     </form>
   );

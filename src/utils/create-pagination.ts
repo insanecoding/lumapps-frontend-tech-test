@@ -1,7 +1,6 @@
 import range from 'lodash/range';
 import type { Nullable } from '../types';
 
-// todo: add E2E tests
 const createPagination = ({
   totalPages,
   currentPage,

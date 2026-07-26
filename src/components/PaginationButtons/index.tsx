@@ -31,6 +31,7 @@ const PaginationButtons: React.FC<{
         emphasis="medium"
         onClick={() => goToPage(currentPage - 1)}
         isDisabled={currentPage === 1}
+        data-testid="pagination-button-previous"
       >
         {'<'}
       </Button>
@@ -46,6 +47,7 @@ const PaginationButtons: React.FC<{
               if (item === currentPage) return;
               goToPage(item);
             }}
+            data-testid={`pagination-button-${item}`}
           >
             {item}
           </Button>
@@ -55,6 +57,7 @@ const PaginationButtons: React.FC<{
         emphasis="medium"
         onClick={() => goToPage(currentPage + 1)}
         isDisabled={currentPage === totalPages}
+        data-testid="pagination-button-next"
       >
         {'>'}
       </Button>

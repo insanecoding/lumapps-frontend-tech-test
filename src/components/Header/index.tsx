@@ -24,6 +24,7 @@ const Header: React.FC = () => {
           linkProps={
             { to: '/' } as React.AnchorHTMLAttributes<HTMLAnchorElement>
           }
+          data-testid="header-logo"
         />
         <SearchForm />
       </FlexBox>

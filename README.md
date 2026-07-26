@@ -7,9 +7,10 @@
 ## Where to go next:
 - Add infinite scrolling for better UX. If the data grows significantly, virtualization can help
 - Optimize images + use newer formats
+- Add visual regression testing
 - Configure Cypress to run headlessly against production build
 - Turn the search input into a live search with debounce instead of the search on enter
-- Consider skeleton cards as placeholders when fetching for better perceived performance
+- Consider skeleton cards as placeholders for better perceived performance when fetching
 
 ## Introduction
 
